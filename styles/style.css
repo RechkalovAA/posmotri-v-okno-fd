@@ -89,7 +89,6 @@ ol {
   flex-direction: column;
   justify-content: space-between;
   max-width: 399px;
-  height: 100%;
 }
 
 .result__video-container {
@@ -102,6 +101,7 @@ ol {
 .result__video-container video {
   width: 100%;
   height: 100%;
+  object-position: center;
   object-fit: cover;
 }
 
@@ -126,8 +126,6 @@ ol {
 
 .content__video-card-description-container {
   flex-grow: 1;
-  width: 196px;
-  height: 103px;
 }
 
 .search-form__fieldset-title {
@@ -162,7 +160,7 @@ ol {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 196px;
+  width: 196px;
   line-height: 1;
   margin-bottom: 6px;
 }
@@ -214,13 +212,17 @@ input {
   font-family: "Fira Sans Condensed", sans-serif;
   font-weight: 400;
   color: #fff;
-  border-left: none;
-  border-right: none;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
   background-color: transparent;
   appearance: none;
   border-top: 1px solid;
   border-bottom: 1px solid;
   outline: none;
+}
+
+input:active {
+  border: 1px solid #fff;
 }
 
 .search-form__textfield::placeholder {
@@ -233,6 +235,7 @@ input {
 
 .search-form__label:has(.search-form__textfield:focus-visible) {
   outline: 1px solid #fff;
+  outline-offset: 1px;
 }
 
 .search-form__pseudo-checkbox {
@@ -260,6 +263,18 @@ input {
   text-underline-offset: 2px;
 }
 
+.search-form__checkbox-list
+  .search-form__label:active
+  .search-form__label-text {
+  text-decoration: none;
+}
+
+.search-form__checkbox-list
+  .search-form__label:active
+  .search-form__pseudo-checkbox::after {
+  opacity: 1;
+}
+
 .search-form__label:has(.search-form__checkbox:focus-visible) {
   outline: 1px solid #fff;
   outline-offset: 1px;
@@ -272,17 +287,18 @@ input {
   background-color: transparent;
   font-size: 18px;
   cursor: pointer;
+  font-weight: 700;
+  appearance: none;
+  min-height: 34px;
 }
 
 .search-form__submit-button {
   align-self: flex-end;
   min-width: 194px;
-  min-height: 34px;
 }
 
 .more-button {
   width: 100%;
-  min-height: 34px;
 }
 
 .button:hover {
@@ -308,13 +324,14 @@ input {
   background-color: #545050;
 }
 
-.content__card-link:active {
-  background-color: #545050;
-}
-
 .content__card-link:hover {
   text-decoration: underline 2px;
   text-underline-offset: 1px;
+}
+
+.content__card-link:active {
+  background-color: #545050;
+  text-decoration: none;
 }
 
 .content__card-link:focus {
@@ -328,16 +345,4 @@ input {
 
 .content__list-item {
   padding: 0 3px;
-}
-
-.preloader {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  z-index: 10;
 }
